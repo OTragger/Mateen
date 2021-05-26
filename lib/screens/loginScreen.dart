@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Mateen Driver'),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255,86, 0, 232),
       ),
       body: Center(
         child: Column(
@@ -28,6 +28,7 @@ class LoginScreen extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: TextField(
                 decoration: InputDecoration(
+                  labelText: 'User Name',
                   border:OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       const Radius.circular(5.0)
@@ -37,8 +38,8 @@ class LoginScreen extends StatelessWidget {
                       color: Color.fromARGB(255,86, 0, 232),
                     )
                   ),
-                  suffixIcon:Icon(Icons.expand),
-                  hintText: 'User name',
+                  suffixIcon:Icon(Icons.remove_red_eye),
+                  hintText: 'John Doe',
                 ),
               ),
             ),
@@ -47,6 +48,7 @@ class LoginScreen extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: TextField(
                 decoration: InputDecoration(
+                  labelText: 'Password',
                   border:OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       const Radius.circular(5.0)
@@ -56,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                       color: Color.fromARGB(255,86, 0, 232),
                     )
                   ),
-                  suffixIcon:Icon(Icons.expand),
+                  suffixIcon:Icon(Icons.remove_red_eye),
                   hintText: 'Password',
                 ),
               ),

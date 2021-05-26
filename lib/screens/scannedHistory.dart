@@ -36,11 +36,11 @@ class ScannedHistory extends StatelessWidget {
               iconSize: 24.0,
               icon: Icon(Icons.cached),
               color: Colors.white,
-              onPressed: (){},
+              onPressed: (){Navigator.pop(context);},
             ),
             IconButton(
               iconSize: 24.0,
-              icon: Icon(Icons.dock),
+              icon: Icon(Icons.logout),
               color: Colors.white,
               onPressed: (){},
             )
