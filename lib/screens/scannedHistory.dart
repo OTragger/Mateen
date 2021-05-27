@@ -44,8 +44,8 @@ class ScannedHistory extends StatelessWidget {
               color: Colors.white,
               onPressed: (){},
             )
-        ]
-      ),
+          ]
+        ),
       )
     );
   }

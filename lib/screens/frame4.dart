@@ -1,7 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:mateen/screens/rejectPage.dart';
 import 'package:mateen/screens/scannedHistory.dart';
 import 'package:mateen/widgets/scannedItemInfo.dart';
+
+import 'deliveryPage.dart';
 
 class Frame4 extends StatelessWidget {
   @override
@@ -33,7 +36,61 @@ class Frame4 extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: (){print('Reschedule');},
+                        onPressed: (){
+                          showDialog(
+                            barrierDismissible: true,
+                            context: context, 
+                            builder: (context){
+                              return AlertDialog(
+                                title: Text('Reschedule Order'),
+                                content: Column(
+                                  children:[
+                                    Text('NEW Delivery date: 19/05/2021'),
+                                    TextField(
+                                      decoration: InputDecoration(
+                                        labelText: 'Reason',
+                                        border:OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            const Radius.circular(5.0)
+                                          ),
+                                          borderSide: BorderSide(
+                                            width: 2,
+                                            color: Color.fromARGB(255,86, 0, 232),
+                                          )
+                                        ),
+                                        hintText: 'Input text',
+                                      ),
+                                    ),
+                                  ]
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: Text(
+                                      'CONFIRM',
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255,86, 0, 232),
+                                      ),
+                                    ),
+                                    onPressed: (){
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text(
+                                      'CANCEL',
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255,86, 0, 232),
+                                      ),
+                                    ),
+                                    onPressed: (){
+                                      Navigator.pop(context);
+                                    },
+                                  )
+                                ],
+                              );
+                            }
+                          );
+                        },
                         child: Text(
                           'RESCHEDULE',
                           style: TextStyle(
@@ -45,7 +102,9 @@ class Frame4 extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: (){print('Delivered');},
+                        onPressed: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DeliveryPage()));
+                        },
                         child: Text(
                           'DELIVER',
                           style: TextStyle(
