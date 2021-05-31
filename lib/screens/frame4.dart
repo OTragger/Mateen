@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mateen/predef/colorPalette.dart';
+import 'package:mateen/widgets/mateenDatePicker.dart';
 import 'package:mateen/widgets/scannedItemInfo.dart';
 
 class Frame4 extends StatelessWidget {
@@ -49,7 +50,12 @@ class Frame4 extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children:[
-                                    Text('NEW Delivery date: 19/05/2021'),
+                                    Row(
+                                      children: [
+                                        Text('NEW Delivery date: '),
+                                        MateenDatePicker(),
+                                      ],
+                                    ),
                                     SizedBox(height:20),
                                     TextField(
                                       maxLines: 10,
@@ -136,7 +142,7 @@ class Frame4 extends StatelessWidget {
               left: 10,
               child: IconButton(
                 onPressed: (){
-                  Navigator.of(context).pushNamed('/scannedHistory');
+                  Navigator.of(context).pushNamed('/scanHistory');
                 },
                 iconSize: 40,
                 icon: Icon(Icons.clear),

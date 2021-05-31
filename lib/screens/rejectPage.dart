@@ -113,7 +113,7 @@ class _RejectPageState extends State<RejectPage> {
                           ),
                           TextField(
                             decoration: InputDecoration(
-                              prefixText: 'Customer name: '
+                              prefixText: 'Type your reason here...'
                             ),
                             maxLines: 10,
                           )

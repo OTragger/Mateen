@@ -6,6 +6,10 @@ import 'dart:io';
 
 class DeliverPage extends StatefulWidget {
 
+  final Image signature;
+
+  const DeliverPage({Key key, this.signature}) : super(key: key);
+
   @override
   _DeliverPageState createState() => _DeliverPageState();
 }
@@ -96,6 +100,7 @@ class _DeliverPageState extends State<DeliverPage> {
               ),
               SizedBox(height:10.0),
               TextField(
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Collected amount',
                   border:OutlineInputBorder(
@@ -152,32 +157,45 @@ class _DeliverPageState extends State<DeliverPage> {
                 )
               ),
               SizedBox(height:10.0),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                  children:[
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        'Customer Signature',
-                        style: TextStyle(fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                      ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                      children:[
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            'Customer Signature',
+                            style: TextStyle(fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Card(
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Tap here to sign'
+                                ),
+                              //   signature == null ? Image.asset(
+                              //   'assets/blank.png',
+                              //   height: 100,
+                              // ): Image.file(pickedImage, height: 100)
+                              ],
+                            ),
+                          ),
+                        )
+                        
+                      ]
                     ),
-                    TextField(
-                      decoration: InputDecoration(
-                        prefixText: 'Customer name: '
-                      ),
-                      maxLines: 10,
                     )
-                    
-                  ]
-                ),
-                )
-              ),
-              SizedBox(height:10.0),
-              FloatingActionButton(
+                  ),
+                  SizedBox(height:10.0),
+              FloatingActionButton.extended(
                 onPressed: () async{
                   //show delivery confirmation dialog box
                   showDialog(
@@ -196,7 +214,18 @@ class _DeliverPageState extends State<DeliverPage> {
                       actions: [
                         TextButton(
                           child: Text(
-                            'CONFIRM EDIT',
+                            'CONFIRM',
+                            style: TextStyle(
+                              color: ColorPalette().defaultColor,
+                            ),
+                          ),
+                          onPressed: (){
+                            Navigator.pop(context);
+                          },
+                        ),
+                        TextButton(
+                          child: Text(
+                            'EDIT',
                             style: TextStyle(
                               color: ColorPalette().defaultColor,
                             ),
@@ -207,14 +236,15 @@ class _DeliverPageState extends State<DeliverPage> {
                         )
                       ],
                     );
-                  });
-
-
+                  }
+                );
                   //showDeliveryConfirmation();
                 },
-                child: Text('Confirm Delivery'),
+                label: Text('Confirm Delivery'),
                 backgroundColor: ColorPalette().secondaryColor,
               )
+                ],
+              ),
             ]
           ),
         ),]

@@ -29,6 +29,14 @@ dependencies:
   flutter_barcode_scanner: ^1.0.1
   # for scanning qr code
   qr_code_scanner: ^0.4.0
+  # this will be used for the signature
+  signature: ^4.1.1
+  # to save the signature to file
+  permission_handler: ^5.1.0+2
+  image_gallery_saver: ^1.6.8
+
+  # archive: ^3.0.0
+  # flutter
   flutter:
     sdk: flutter
 
@@ -56,8 +64,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/mula.jpg
-    - assets/image.png
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
