@@ -1,6 +1,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mateen/screens/frame4.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -40,15 +41,7 @@ class _ScanPageState extends State<ScanPage> {
     return Scaffold(
       body:Stack(
         children:[
-          // Center(
-          //   child: IconButton(
-          //     onPressed: (){
-          //       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Frame4()));
-          //     },
-          //     icon: Icon(Icons.fullscreen_outlined),
-          //     iconSize: 350,
-          //   ),
-          // ),
+          
           mateenQRView(context),
           Positioned(
             top: 30, 
@@ -61,9 +54,22 @@ class _ScanPageState extends State<ScanPage> {
               icon: Icon(Icons.clear),
               color: Colors.black,
             ),
-          )
+          ),
+          Positioned(
+            bottom:20,
+            left: 0,
+            right: 0,
+            child: scanResult(),
+          ),
         ]
       )
+    );
+  }
+
+  Widget scanResult(){
+    return Text(
+      barcode!=null? 'Result: ${barcode.code}' : 'Looking for a QR code...',
+      maxLines:3,
     );
   }
 
@@ -72,9 +78,9 @@ class _ScanPageState extends State<ScanPage> {
       key: qrKey, 
       onQRViewCreated: onQRViewCreated,
       overlay: QrScannerOverlayShape(
-        cutOutSize: MediaQuery.of(context).size.width * 0.6,
+        cutOutSize: MediaQuery.of(context).size.width * 0.8,
         borderLength: 20,
-        borderWidth: 30,
+        borderWidth: 10,
         borderRadius: 10,
         borderColor: Theme.of(context).accentColor,
       )
@@ -84,13 +90,18 @@ class _ScanPageState extends State<ScanPage> {
   void onQRViewCreated(QRViewController controller){
     setState(()=>this.controller = controller);
 
-    controller.scannedDataStream.
-      listen((barcode)=>setState(()=>this.barcode = barcode));
-
-    if(barcode != null){
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Frame4()));
+    try{
+      controller.scannedDataStream.
+      listen((barcode)=>setState((){
+        this.barcode = barcode;
+        if(barcode != null){
+          //wait two seconds
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Frame4(scanned:barcode.code)));
+        }
+      })
+    );
+    } on PlatformException{
+      barcode = null;
     }
-
-
   }
 }

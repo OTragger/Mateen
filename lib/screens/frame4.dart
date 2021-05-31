@@ -1,12 +1,14 @@
 
 import 'package:flutter/material.dart';
-import 'package:mateen/screens/rejectPage.dart';
-import 'package:mateen/screens/scannedHistory.dart';
+import 'package:mateen/predef/colorPalette.dart';
 import 'package:mateen/widgets/scannedItemInfo.dart';
 
-import 'deliveryPage.dart';
-
 class Frame4 extends StatelessWidget {
+  final String scanned;
+
+  const Frame4({Key key, @required this.scanned}) : super(key: key);
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,20 +25,20 @@ class Frame4 extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RejectPage()));
+                          Navigator.of(context).pushNamed('/rejectPage');
                         },
                         child: Text(
                           'REJECT',
                           style: TextStyle(
                             fontSize: 16,
                             letterSpacing: 1.2,
-                            color: Color.fromARGB(255,86, 0, 232),
+                            color: ColorPalette().defaultColor,
                             fontWeight: FontWeight.bold
                           ),
                         ),
                       ),
                       TextButton(
-                        onPressed: (){
+                        onPressed: () async {
                           showDialog(
                             barrierDismissible: true,
                             context: context, 
@@ -44,9 +46,13 @@ class Frame4 extends StatelessWidget {
                               return AlertDialog(
                                 title: Text('Reschedule Order'),
                                 content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children:[
                                     Text('NEW Delivery date: 19/05/2021'),
+                                    SizedBox(height:20),
                                     TextField(
+                                      maxLines: 10,
                                       decoration: InputDecoration(
                                         labelText: 'Reason',
                                         border:OutlineInputBorder(
@@ -96,21 +102,26 @@ class Frame4 extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             letterSpacing: 1.2,
-                            color: Color.fromARGB(255,86, 0, 232),
+                            color: ColorPalette().defaultColor,
                             fontWeight: FontWeight.bold
                           ),
                         ),
                       ),
                       TextButton(
                         onPressed: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DeliveryPage()));
+                          try {
+                            Navigator.of(context).pushNamed('/deliveryPage');
+                          } catch (e) {
+                            print(e); 
+                          }
+                          
                         },
                         child: Text(
                           'DELIVER',
                           style: TextStyle(
                             fontSize: 16,
                             letterSpacing: 1.2,
-                            color: Color.fromARGB(255,86, 0, 232),
+                            color: ColorPalette().defaultColor,
                             fontWeight: FontWeight.bold
                           ),
                         ),
@@ -125,13 +136,17 @@ class Frame4 extends StatelessWidget {
               left: 10,
               child: IconButton(
                 onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ScannedHistory()));
+                  Navigator.of(context).pushNamed('/scannedHistory');
                 },
                 iconSize: 40,
                 icon: Icon(Icons.clear),
                 color: Colors.black,
               ),
             ),
+            Positioned(
+              bottom: 20,
+              child: Text('scanned qr info: $scanned'),
+            )
           ]
         ),
       )

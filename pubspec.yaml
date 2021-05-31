@@ -21,6 +21,13 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  # for providing path
+  path_provider: ^1.6.24
+  # for picking an image from gallery or snaping it from camera
+  image_picker: ^0.6.7+14
+  # for scanning code bar
+  flutter_barcode_scanner: ^1.0.1
+  # for scanning qr code
   qr_code_scanner: ^0.4.0
   flutter:
     sdk: flutter
@@ -50,6 +57,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/mula.jpg
+    - assets/image.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
