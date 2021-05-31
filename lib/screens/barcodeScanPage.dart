@@ -48,6 +48,7 @@ class _BarCodeScanPageState extends State<BarCodeScanPage> {
               ),
             ),
             SizedBox(height:20),
+            // ignore: deprecated_member_use
             RaisedButton(
               onPressed: (){
                 Navigator.of(context).pushNamed('/scannedItemPage', arguments: barcode);

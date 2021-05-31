@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mateen/predef/colorPalette.dart';
-import 'package:mateen/screens/loginScreen.dart';
 import 'package:mateen/widgets/scannedItem.dart';
 
 
@@ -27,6 +26,7 @@ class ScannedHistory extends StatelessWidget {
           offset: Offset.fromDirection(1,1),
           itemBuilder: (context)=>[
             PopupMenuItem(
+              // ignore: deprecated_member_use
               child: FlatButton(
                 onPressed: (){
                   Navigator.of(context).pushNamed('/barCodeScanPage');
@@ -46,6 +46,7 @@ class ScannedHistory extends StatelessWidget {
               ),
             ),
             PopupMenuItem(
+              // ignore: deprecated_member_use
               child: FlatButton(
                 onPressed: (){
                   Navigator.of(context).pushNamed('/scanPage');
@@ -108,7 +109,7 @@ class ScannedHistory extends StatelessWidget {
             ),
             onPressed: (){
               //go back to the login page and clear the navigator stack
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginScreen()));
+              Navigator.of(context).pushReplacementNamed('/loginScreen');
             },
           ),
           TextButton(

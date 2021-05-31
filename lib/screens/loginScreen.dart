@@ -64,6 +64,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 25),
+            // ignore: deprecated_member_use
             RaisedButton(
               onPressed: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ScannedHistory()));
