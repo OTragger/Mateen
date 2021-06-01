@@ -116,7 +116,7 @@ class Frame4 extends StatelessWidget {
                       TextButton(
                         onPressed: (){
                           try {
-                            Navigator.of(context).pushNamed('/deliveryPage');
+                            Navigator.of(context).pushNamed('/deliverPage');
                           } catch (e) {
                             print(e); 
                           }

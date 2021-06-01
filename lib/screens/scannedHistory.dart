@@ -109,7 +109,7 @@ class ScannedHistory extends StatelessWidget {
             ),
             onPressed: (){
               //go back to the login page and clear the navigator stack
-              Navigator.of(context).pushReplacementNamed('/loginScreen');
+              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
           TextButton(
