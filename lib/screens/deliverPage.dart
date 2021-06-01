@@ -11,10 +11,14 @@ class DeliverPage extends StatefulWidget {
   const DeliverPage({Key key, this.signature}) : super(key: key);
 
   @override
-  _DeliverPageState createState() => _DeliverPageState();
+  _DeliverPageState createState() => _DeliverPageState(signature);
 }
 
 class _DeliverPageState extends State<DeliverPage> {
+
+  Image signature;
+
+  _DeliverPageState(this.signature);
 
   //lets init the check box value to false
   bool checkboxValue = false;
@@ -173,23 +177,16 @@ class _DeliverPageState extends State<DeliverPage> {
                             fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Card(
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'Tap here to sign'
-                                ),
-                              //   signature == null ? Image.asset(
-                              //   'assets/blank.png',
-                              //   height: 100,
-                              // ): Image.file(pickedImage, height: 100)
-                              ],
+                        signature == null ? GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).pushNamed('/signaturePage');
+                          },
+                          child: Card(
+                            child: Center(
+                              child:  Text('Tap here to sign')
                             ),
                           ),
-                        )
-                        
+                        ) : Center(child: signature),
                       ]
                     ),
                     )

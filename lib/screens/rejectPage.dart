@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mateen/predef/colorPalette.dart';
-import 'package:mateen/screens/scannedHistory.dart';
 
 class RejectPage extends StatefulWidget {
   @override
@@ -98,39 +97,43 @@ class _RejectPageState extends State<RejectPage> {
                       )
                     ),
                     SizedBox(height:10.0),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                        children:[
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(
-                              'REJECTION REASON',
-                              style: TextStyle(fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                            ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                            children:[
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  'REJECTION REASON',
+                                  style: TextStyle(fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Type your reason here...'
+                                ),
+                                maxLines: 10,
+                              )
+                              
+                            ]
                           ),
-                          TextField(
-                            decoration: InputDecoration(
-                              prefixText: 'Type your reason here...'
-                            ),
-                            maxLines: 10,
                           )
-                          
-                        ]
-                      ),
-                      )
+                        ),
+                        SizedBox(height:10.0),
+                        FloatingActionButton.extended(
+                          onPressed: (){
+                            Navigator.of(context).pushNamed('/scanHistory');
+                          },
+                          label: Text('Confirm Rejection'),
+                          backgroundColor: ColorPalette().secondaryColor,
+                        )
+                      ],
                     ),
-                    SizedBox(height:10.0),
-                    FloatingActionButton(
-                      onPressed: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ScannedHistory()));
-                      },
-                      child: Text('Confirm Rejection'),
-                      backgroundColor: ColorPalette().secondaryColor,
-                    )
-
               ]
             ),
           ),

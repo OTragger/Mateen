@@ -18,7 +18,13 @@ class SignatureVisualization extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        leading: CloseButton(),
+        leading: IconButton(
+            icon: Icon(
+              Icons.clear, 
+              color: Colors.red
+            ),
+            onPressed: ()=>cancelStoring(context),
+          ),
         title: Text('Save signature?'),
         centerTitle: true,
         backgroundColor: ColorPalette().defaultColor,
@@ -38,6 +44,12 @@ class SignatureVisualization extends StatelessWidget {
     );
   }
 
+
+  void cancelStoring(BuildContext context){
+
+    Navigator.of(context).pushReplacementNamed('/deliveryPage', arguments: Image.memory(signature));
+
+  }
   Future storeSignature(BuildContext context) async{
 
     final status = await Permission.storage.status;
@@ -53,19 +65,19 @@ class SignatureVisualization extends StatelessWidget {
     final File file = File(result['filePath']);
 
     if(isSuccessful){
-      //Navigator.of(context).pushReplacementNamed('/deliverPage',Image.file(file));
-      // Utils.showSnackBar(
-      //   context,
-      //   text: 'Saved',
-      //   color: ColorPalette().secondaryColor,
-      // );
+      Navigator.of(context).pushReplacementNamed('/deliveryPage', arguments: Image.file(file));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.green,
+          content: Text('Saved'),
+      ));
     }
     else{
-      // Utils.showSnackBar(
-      //   context,
-      //   text: 'Failed to save file',
-      //   color: Colors.red,
-      // );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.red,
+          content: Text('Failed to save to file'),
+      ));
     }
   }
 }

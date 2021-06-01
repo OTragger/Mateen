@@ -8,6 +8,7 @@ import 'package:mateen/screens/loginScreen.dart';
 import 'package:mateen/screens/rejectPage.dart';
 import 'package:mateen/screens/scanPage.dart';
 import 'package:mateen/screens/scannedHistory.dart';
+import 'package:mateen/screens/signaturePage.dart';
 import 'package:mateen/screens/signatureVisualization.dart';
 
 class RouteGenerator{
@@ -21,7 +22,10 @@ class RouteGenerator{
         return MaterialPageRoute(builder: (_) => LoginScreen());
       
       case '/deliveryPage':
-        return MaterialPageRoute(builder: (_) => DeliverPage());
+        if(args is Image){
+          return MaterialPageRoute(builder: (_) => DeliverPage( signature: args));
+        }
+        return _errorPage();
 
       case '/scannedItemPage':
         if(args is String){
@@ -44,6 +48,9 @@ class RouteGenerator{
 
       case '/scanHistory':
         return MaterialPageRoute(builder: (_) => ScannedHistory());
+
+      case '/signaturePage':
+        return MaterialPageRoute(builder: (_) => SignaturePage());
 
       case '/signatureVisualization':
         if(args is Uint8List){
