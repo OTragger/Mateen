@@ -149,9 +149,7 @@ class _DeliverPageState extends State<DeliverPage> {
                         Expanded(
                           flex:1,
                           child: FloatingActionButton(
-                            onPressed: (){
-                              pickImage();
-                            },
+                            onPressed: ()=>pickImage(),
                             backgroundColor: ColorPalette().secondaryColor,
                             child: Icon(Icons.add, color: Colors.black),
                           ),
@@ -179,7 +177,7 @@ class _DeliverPageState extends State<DeliverPage> {
                             fontWeight: FontWeight.bold),
                           ),
                         ),
-                        signature == null ? GestureDetector(
+                        signature.image == null ? GestureDetector(
                           onTap: (){
                             Navigator.of(context).pushNamed('/signaturePage');
                           },
