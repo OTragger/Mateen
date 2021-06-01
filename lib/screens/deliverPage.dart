@@ -29,10 +29,12 @@ class _DeliverPageState extends State<DeliverPage> {
   final imagePicker = ImagePicker();
 
   Future pickImage() async{
-    final image = await imagePicker.getImage(source: ImageSource.camera);
 
-    setState((){
-    pickedImage = File(image.path);});
+      final image = await imagePicker.getImage(source: ImageSource.camera);
+
+      setState((){
+      pickedImage = File(image.path);});
+    
   }
 
   @override
@@ -149,7 +151,9 @@ class _DeliverPageState extends State<DeliverPage> {
                         Expanded(
                           flex:1,
                           child: FloatingActionButton(
-                            onPressed: ()=>pickImage(),
+                            onPressed: (){
+                              pickImage();
+                            },
                             backgroundColor: ColorPalette().secondaryColor,
                             child: Icon(Icons.add, color: Colors.black),
                           ),
@@ -182,8 +186,11 @@ class _DeliverPageState extends State<DeliverPage> {
                             Navigator.of(context).pushNamed('/signaturePage');
                           },
                           child: Card(
-                            child: Center(
-                              child:  Text('Tap here to sign')
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Center(
+                                child:  Text('Tap here to sign')
+                              ),
                             ),
                           ),
                         ) : Center(child: signature),

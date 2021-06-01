@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:mateen/predef/colorPalette.dart';
@@ -50,6 +49,8 @@ class SignatureVisualization extends StatelessWidget {
     Navigator.of(context).pushReplacementNamed('/deliveryPage', arguments: Image.memory(signature));
 
   }
+
+
   Future storeSignature(BuildContext context) async{
 
     final status = await Permission.storage.status;
@@ -62,15 +63,15 @@ class SignatureVisualization extends StatelessWidget {
 
     final result = await ImageGallerySaver.saveImage(signature, name: name, );
     final isSuccessful = result['isSuccess'];
-    final File file = File(result['filePath']);
 
     if(isSuccessful){
-      Navigator.of(context).pushReplacementNamed('/deliveryPage', arguments: Image.file(file));
+      
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: Colors.green,
           content: Text('Saved'),
       ));
+      Navigator.of(context).pushReplacementNamed('/deliveryPage', arguments: Image.memory(signature));
     }
     else{
       ScaffoldMessenger.of(context).showSnackBar(

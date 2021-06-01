@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mateen/predef/colorPalette.dart';
 
@@ -16,10 +17,12 @@ class _RejectPageState extends State<RejectPage> {
   final imagePicker = ImagePicker();
 
   Future pickImage() async{
-    final image = await imagePicker.getImage(source: ImageSource.camera);
 
-    setState((){
-    pickedImage = File(image.path);});
+      final image = await imagePicker.getImage(source: ImageSource.camera);
+
+      setState((){
+      pickedImage = File(image.path);});
+    
   }
 
   @override
