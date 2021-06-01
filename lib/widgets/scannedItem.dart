@@ -19,7 +19,7 @@ class ScannedItem extends StatelessWidget {
                   Expanded(
                     flex:1,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/package.jpg'),
+                      backgroundImage: AssetImage('assets/package.jpg',),
                       radius: 25.0,
                     ),
                   ),

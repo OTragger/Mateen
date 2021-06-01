@@ -116,7 +116,7 @@ class Frame4 extends StatelessWidget {
                       TextButton(
                         onPressed: (){
                           try {
-                            Navigator.of(context).pushNamed('/deliverPage');
+                            Navigator.of(context).pushNamed('/deliveryPage',arguments: Image(image: null,));
                           } catch (e) {
                             print(e); 
                           }

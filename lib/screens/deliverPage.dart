@@ -8,7 +8,7 @@ class DeliverPage extends StatefulWidget {
 
   final Image signature;
 
-  const DeliverPage({Key key, this.signature}) : super(key: key);
+  const DeliverPage({Key key, @required this.signature}) : super(key: key);
 
   @override
   _DeliverPageState createState() => _DeliverPageState(signature);
