@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mateen/predef/colorPalette.dart';
 import 'dart:io';
@@ -105,6 +106,7 @@ class _DeliverPageState extends State<DeliverPage> {
               SizedBox(height:10.0),
               TextField(
                 keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(
                   labelText: 'Collected amount',
                   border:OutlineInputBorder(
