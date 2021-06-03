@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mateen/models/httpService.dart';
+import 'package:mateen/models/shipments.dart';
 import 'package:mateen/predef/colorPalette.dart';
 import 'package:mateen/widgets/scannedItem.dart';
 
@@ -8,12 +10,36 @@ class ScannedHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: ListView(
-          children: [
-            ScannedItem(),
-            ScannedItem(),
-          ]
+        child: FutureBuilder(
+          future: HttpFetchShipmentService().getShipments(),
+          builder: (BuildContext context, AsyncSnapshot<List<Data>> snapshot){
+            return (!snapshot.hasData) ? 
+              Center(child: Column(
+                children: [
+                  Text('Fetching data...'),
+                  CircularProgressIndicator(),
+                ],
+              ),) : 
+              ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index)=>
+                  ScannedItem(
+                    deliveryArea: snapshot.data[index].deliveryArea,
+                    deliveryCity: snapshot.data[index].deliveryCity,
+                    shipmentReference: snapshot.data[index].shipmentReference,
+                    cODAmount: snapshot.data[index].cODAmount,
+                    barcode: snapshot.data[index].barcode,
+                  ),
+              );
+          },
+          
         )
+        // ListView(
+        //   children: [
+        //     ScannedItem(),
+        //     ScannedItem(),
+        //   ]
+        // )
       ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

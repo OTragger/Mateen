@@ -2,6 +2,23 @@ import 'package:flutter/material.dart';
 
 
 class ScannedItem extends StatelessWidget {
+
+  final String shipmentReference;
+  final String cODAmount;
+  final String deliveryCity;
+  final String deliveryArea;
+  final String barcode;
+
+  const ScannedItem({
+    Key key, 
+    @required this.shipmentReference, 
+    @required this.cODAmount, 
+    @required this.deliveryCity, 
+    @required this.deliveryArea, 
+    @required this.barcode}) : super(key: key);
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,7 +48,7 @@ class ScannedItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '054580156-gfgsd',
+                            '$barcode',
                             style: TextStyle(
                               fontSize: 25.0,
                               color: Colors.black,
@@ -58,7 +75,7 @@ class ScannedItem extends StatelessWidget {
               ),
               SizedBox(height:10.0),
               Text(
-                'Address: Lorem ipsum dolor emet sit Lorem ipsum dolor emet sit',
+                'Address: $deliveryArea',
                 style: TextStyle(
                   letterSpacing: 1.1,
                 ),
@@ -72,7 +89,7 @@ class ScannedItem extends StatelessWidget {
               ),
               SizedBox(height:10.0),
               Text(
-                'COD Amount: ',
+                'COD Amount: $cODAmount',
                 style: TextStyle(
                   letterSpacing: 1.1,
                 ),

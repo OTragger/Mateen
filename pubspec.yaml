@@ -34,6 +34,7 @@ dependencies:
   # to save the signature to file
   permission_handler: ^5.1.0+2
   image_gallery_saver: ^1.6.8
+  http:
 
   # archive: ^3.0.0
   # flutter

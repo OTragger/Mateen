@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mateen/models/httpService.dart';
+import 'package:mateen/predef/secret.dart';
 import 'package:mateen/screens/scannedHistory.dart';
 
 
@@ -66,7 +68,10 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 25),
             // ignore: deprecated_member_use
             RaisedButton(
-              onPressed: (){
+              onPressed: () async {
+                var login = await HttpLoginService().getAuthCode();
+                Secret.authCode = login.data.authCode;
+                Secret.driverCode = login.data.driverCode;
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ScannedHistory()));
               },
               color: Color.fromARGB(255,86, 0, 232),
