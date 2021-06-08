@@ -2,56 +2,46 @@ import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:mateen/models/login.dart';
 import 'package:mateen/models/shipments.dart' as shipments;
-import 'package:mateen/predef/secret.dart';
+
+class HttpLoginService {
+  Future<LoginResponse> getAuthCode(LoginRequest request) async {
 
 
-class HttpLoginService{
+    final String logUrl = "https://www.codiraq.com/ShipmentsAPI/login.php";
 
-  final String logUrl = "https://www.codiraq.com/ShipmentsAPI/login.php";
+    //posting
+    Response response = await post(
+      Uri.parse(logUrl),
+      body: request.toJson()
+    );
 
-  Future<Login> getAuthCode() async{
-
-    Login mylogin;
-
-    try{
-      Response response = await get(logUrl,headers: {"Accept":"application/json"});
-
-      if (response.statusCode == 200){
-
-        var jsonData = jsonDecode(response.body);
-        mylogin = Login.fromJson(jsonData);
-      }
+    if (response.statusCode == 200 || response.statusCode == 400) {
+      return LoginResponse.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Fail to load data');
     }
-    catch (e){
-      print(e);
-    }
-
-    return mylogin;
   }
 }
 
-class HttpFetchShipmentService{
+class HttpFetchShipmentService {
+  final String logUrl =
+      "https://www.codiraq.com/ShipmentsAPI/DriversShipments.php?driverCode=Ehmtx123";
 
-  final String logUrl = "https://www.codiraq.com/ShipmentsAPI/DriversShipments.php?driverCode=Ehmtx123";
-  
-
-  Future<List<shipments.Data>> getShipments() async{
-
+  Future<List<shipments.Data>> getShipments() async {
     List<shipments.Data> myShipments;
 
-    try{
+    try {
       Response response = await get(logUrl, headers: {
-        "Authorization":"${Secret.authCode}",
-        "Accept":"application/json"
+        // "Authorization": "${Secret.authCode}",
+        "Authorization": "LrwiXi5D37RxHeoweCbafOtafBTUlB",
+        "Accept": "application/json"
       });
 
-      if (response.statusCode == 200){
-
+      if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
         myShipments = shipments.Shipments.fromJson(jsonData).data;
       }
-    }
-    catch (e){
+    } catch (e) {
       print(e);
     }
 

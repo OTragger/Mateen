@@ -1,22 +1,32 @@
-class Login {
-  bool status;
-  Data data;
+class LoginResponse {
+  final bool status;
+  final Data data;
 
-  Login({this.status, this.data});
+  LoginResponse({this.status, this.data});
 
-  Login.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  factory LoginResponse.fromJson(Map<String, dynamic> json) {
+    return LoginResponse(
+    status : json['status'],
+    data : json['data'] != null ? new Data.fromJson(json['data']) : null);
   }
+
+}
+
+class LoginRequest{
+  String username;
+  String password;
+
+  LoginRequest({this.username, this.password});
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.data != null) {
-      data['data'] = this.data.toJson();
-    }
+    final Map<String, dynamic> data = {
+      'user':username.trim(),
+      'pass':password.trim()
+    };
+    print(data);
     return data;
   }
+
 }
 
 class Data {
